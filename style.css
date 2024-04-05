@@ -1,0 +1,64 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-image: url("images/test.jpg");
+    background-size: cover;
+}
+
+#menuStructure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.menuBtn {
+    padding: 20px;
+    font-size: 100%;
+    font-family: 'Minecraft';
+    color: #423934;
+    background-color: #ffd541;
+    border: 5px solid #423934;
+}
+
+.menuBtn:hover {
+    cursor: pointer;
+}
+
+#game {
+    display: none;
+    width: 585px;
+    height: 627px;
+    margin: 0px auto;
+}
+
+#output {
+    margin-top: 5vh;
+    padding: 10px;
+    font-family: 'Minecraft';
+    color: #423934;
+    background-color: #ffd541;
+    border: 5px solid #423934;
+}
+
+#board {
+    position: relative;
+    width: 585px;
+    height: 585px;
+    margin: 0px;
+    background-color: #ffd541;
+    background-size: cover;
+  }
+
+.cell{
+    display: block;
+    position: absolute;
+    width: 45px;
+    height: 45px;
+}

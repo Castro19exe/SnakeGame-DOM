@@ -18,7 +18,7 @@ body {
     height: 100vh;
 }
 
-.menuBtn {
+.menuBtn, #creditsBtn, #exitBtn, #exitBtnGameOver {
     padding: 20px;
     font-size: 100%;
     font-family: 'Minecraft';
@@ -27,8 +27,12 @@ body {
     border: 5px solid #423934;
 }
 
-.menuBtn:hover {
+.menuBtn:hover, #creditsBtn:hover, #exitBtn:hover, #exitBtnGameOver:hover  {
     cursor: pointer;
+}
+
+#creditsBtn, #exitBtn, #exitBtnGameOver {
+    margin-top: 30px;
 }
 
 #game {
@@ -56,14 +60,14 @@ body {
     background-size: cover;
   }
 
-.cell{
+.cell {
     display: block;
     position: absolute;
     width: 45px;
     height: 45px;
 }
 
-#overlay {
+#overlayCredits, #overlayGameOver {
     position: fixed;
     display: none;
     width: 100%;
@@ -72,7 +76,23 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.9);
     z-index: 2;
-    cursor: pointer;
-  }
+}
+
+#developersInfo {
+    font-family: 'Minecraft';
+    color: #ffd541;
+}
+
+.developersTitle {
+    margin-bottom: 20px;
+    font-size: 300%;
+}
+
+.gameOverTitle {
+    font-family: 'Minecraft';
+    font-size: 700%;
+    color: #d43939;
+    text-shadow: 3px 5px 0px rgba(255, 255, 255, 0.51);
+}

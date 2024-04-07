@@ -4,6 +4,9 @@ let game;
 let board;
 let output;
 
+let overlayCredits;
+let overlayGameOver;
+
 let score = 0;
 
 let foodX;
@@ -41,6 +44,8 @@ let btnEasy;
 let btnMedium;
 let btnHard;
 let btnAsian;
+let btnCredits;
+let exitBtn;
 
 const snake = {
     row: 6,
@@ -120,17 +125,29 @@ function init(e) {
     game = document.getElementById("game");
     board = document.getElementById("board");
     output = document.getElementById("output");
+    overlayCredits = document.getElementById("overlayCredits");
+    overlayGameOver = document.getElementById("overlayGameOver");
 
     btnEasy = document.getElementById("btnEasy");
     btnMedium = document.getElementById("btnMedium");
     btnHard = document.getElementById("btnHard");
     btnAsian = document.getElementById("btnAsian");
+    btnCredits = document.getElementById("creditsBtn");
+    exitBtn = document.getElementById("exitBtn");
 
     //Events
     btnEasy.addEventListener("click", startGame);
     btnMedium.addEventListener("click", startGame);
     btnHard.addEventListener("click", startGame);
     btnAsian.addEventListener("click", startGame);
+    btnCredits.addEventListener("click", function() {
+        overlayCredits.style.display = "flex";
+        overlayCredits.style.justifyContent = "center";
+        overlayCredits.style.alignItems = "center";
+    });
+    exitBtn.addEventListener("click", function() {
+        overlayCredits.style.display = "none";
+    });
 
     window.addEventListener("keydown", keydownHandler, false);
 }
@@ -140,7 +157,7 @@ function init(e) {
 function startGame() {
     render();
     placeFood();
-
+    
     gameInterval = setInterval(updateGame, 200);
 }
 
@@ -159,8 +176,10 @@ function updateGame() {
 function stopGame() {
     clearInterval(gameInterval);
     gameOver = true;
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("btnOK").addEventListener("click", function(event){
+    overlayGameOver.style.display = "flex";
+    overlayGameOver.style.justifyContent = "center";
+    overlayGameOver.style.alignItems = "center";
+    document.getElementById("exitBtnGameOver").addEventListener("click", function(){
         location.href = "index.html";
     });
 }

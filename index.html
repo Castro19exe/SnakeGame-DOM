@@ -7,7 +7,7 @@
     <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
     <script language="javascript" language="Javascript" src="snake.js"></script>
     <link rel="icon" href="images/snakeIconbig.png">
-    <title>Snake Game</title>
+    <title>Snake | The Board Game</title>
 </head>
 <body>
     <section id="menuStructure">
@@ -21,15 +21,31 @@
                 <button class="menuBtn" id="btnHard">Hard</button>
                 <button class="menuBtn" id="btnAsian">Asian</button>
             </div>
+            <button id="creditsBtn">Credits</button>
+            <!-- <div id="credistContainer">
+                <p id="credist"></p>
+                 <img class="imgPerg" src="images/pergaminho.png" alt="Pergaminho">
+            </div> -->
         </div>
     </section>
-
     <section id="game">
         <p id="output"></p> 
         <div id="board"></div>
     </section>
-    <div id="overlay">
-        <button id="btnOK"> OK </button>
+    <div id="overlayCredits">
+        <div id="developersInfo">
+            <h1 class="developersTitle">Developers:</h1>
+            <h2>Joao de Castro</h2>
+            <h2>Miguel Santos</h2>
+            <h2>David Rodrigues</h2>
+            <button id="exitBtn">Exit</button>
+        </div>
+    </div>
+    <div id="overlayGameOver">
+        <div>
+            <h1 class="gameOverTitle"> GAME OVER </h1>
+            <button id="exitBtnGameOver">Back to Menu</button>
+        </div>
     </div>
 </body>
 </html>

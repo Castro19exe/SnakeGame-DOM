@@ -35,10 +35,6 @@ body {
     margin-top: 30px;
 }
 
- #exitBtnGameOver {
-    margin-top: 50px;
-}
-
 #game {
     display: none;
     width: 585px;
@@ -101,4 +97,11 @@ body {
     font-size: 700%;
     color: #da2525;
     text-shadow: 3px 5px 0px rgba(255, 255, 255, 0.8);
+}
+
+#score {
+    padding: 100px;
+    font-family: 'Minecraft';
+    font-size: 30px;
+    color: #ffd541;
 }

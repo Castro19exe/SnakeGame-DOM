@@ -3,6 +3,7 @@ let menu;
 let game;
 let board;
 let output;
+let scoreOutput;
 
 let overlayCredits;
 let overlayGameOver;
@@ -66,8 +67,8 @@ const snake = {
     body: [],
     moveRight: function() {
         if (this.col < COLUMNS - 1) {
-            this.body.unshift({ row: this.row, col: this.col }); // Adiciona a posição atual da cabeça ao corpo
-            if (this.body.length > score) { // Se o corpo for maior do que a pontuação, remova a cauda
+            this.body.unshift({ row: this.row, col: this.col });
+            if (this.body.length > score) {
                 const tail = this.body.pop();
                 easyMap[tail.row][tail.col] = 0;
             }
@@ -137,6 +138,7 @@ function init(e) {
     game = document.getElementById("game");
     board = document.getElementById("board");
     output = document.getElementById("output");
+    scoreOutput = document.getElementById("score");
     overlayCredits = document.getElementById("overlayCredits");
     overlayGameOver = document.getElementById("overlayGameOver");
 
@@ -175,6 +177,8 @@ function startGameEasy() {
     gameInterval = setInterval(updateGame, 300);
 }
 
+//-----------------------------------------------------------------------------
+
 function startGameMedium() {
     render();
     placeFood();
@@ -184,6 +188,8 @@ function startGameMedium() {
     gameInterval = setInterval(updateGame, 200);
 }
 
+//-----------------------------------------------------------------------------
+
 function startGameHard() {
     render();
     placeFood();
@@ -191,8 +197,10 @@ function startGameHard() {
     snake.body.push({ row: snake.row - 1, col: snake.col });
     snake.body.push({ row: snake.row - 2, col: snake.col });
     
-    gameInterval = setInterval(updateGame, 100);
+    gameInterval = setInterval(updateGame, 150);
 }
+
+//-----------------------------------------------------------------------------
 
 function startGameVeryHard() {
     render();
@@ -211,7 +219,7 @@ function updateGame() {
     if(snake.direction !== 'stop') {
         updateSnakeBody();
     }
-    snake.move(); // Move a cabeça da cobra
+    snake.move();
     checkCollision();
     eatFood();
     render();
@@ -225,6 +233,7 @@ function stopGame() {
     overlayGameOver.style.display = "flex";
     overlayGameOver.style.justifyContent = "center";
     overlayGameOver.style.alignItems = "center";
+    scoreOutput.innerHTML += "Your Score: " + score;
     document.getElementById("exitBtnGameOver").addEventListener("click", function(){
         location.href = "index.html";
     });

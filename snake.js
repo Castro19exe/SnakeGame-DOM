@@ -151,7 +151,7 @@ function init(e) {
     btnEasy.addEventListener("click", startGameEasy);
     btnMedium.addEventListener("click", startGameMedium);
     btnHard.addEventListener("click", startGameHard);
-    btnAsian.addEventListener("click", startGameEasy);
+    btnAsian.addEventListener("click", startGameVeryHard);
     btnCredits.addEventListener("click", function() {
         overlayCredits.style.display = "flex";
         overlayCredits.style.justifyContent = "center";
@@ -169,6 +169,8 @@ function init(e) {
 function startGameEasy() {
     render();
     placeFood();
+
+    snake.body.push({ row: snake.row - 1, col: snake.col });
     
     gameInterval = setInterval(updateGame, 300);
 }
@@ -188,6 +190,17 @@ function startGameHard() {
 
     snake.body.push({ row: snake.row - 1, col: snake.col });
     snake.body.push({ row: snake.row - 2, col: snake.col });
+    
+    gameInterval = setInterval(updateGame, 100);
+}
+
+function startGameVeryHard() {
+    render();
+    placeFood();
+
+    snake.body.push({ row: snake.row - 1, col: snake.col });
+    snake.body.push({ row: snake.row - 2, col: snake.col });
+    snake.body.push({ row: snake.row - 3, col: snake.col });
     
     gameInterval = setInterval(updateGame, 100);
 }
@@ -243,7 +256,8 @@ function checkBodyCollision() {
 //-----------------------------------------------------------------------------
 
 function render() {
-    game.style.display = "block";
+    game.style.display = "flex";
+    game.style.alignItems = "center";
     menu.style.display = "none";
 
     board.innerHTML = "";

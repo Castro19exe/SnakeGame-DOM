@@ -31,7 +31,7 @@ const easyMap =
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
-const asianMap =
+const veryHardMap =
 [
     [0, 0, 0, 0, 0, 0, 0, 0, 0,],
     [0, 0, 0, 0, 0, 0, 0, 0, 0,],
@@ -50,6 +50,9 @@ const SIZE = 32;
 // Number of ROWS AND COLUMNS
 const ROWS = easyMap.length;
 const COLUMNS = easyMap[0].length;
+
+const ROWS2 = veryHardMap.length;
+const COLUMNS2 = veryHardMap[0].length;
 
 // Buttons
 let btnEasy;
@@ -151,7 +154,7 @@ function init(e) {
     btnEasy.addEventListener("click", startGameEasy);
     btnMedium.addEventListener("click", startGameMedium);
     btnHard.addEventListener("click", startGameHard);
-    btnAsian.addEventListener("click", startGameEasy);
+    btnAsian.addEventListener("click", startGameVeryHard);
     btnCredits.addEventListener("click", function() {
         overlayCredits.style.display = "flex";
         overlayCredits.style.justifyContent = "center";
@@ -169,6 +172,8 @@ function init(e) {
 function startGameEasy() {
     render();
     placeFood();
+
+    snake.body.push({ row: snake.row - 1, col: snake.col });
     
     gameInterval = setInterval(updateGame, 300);
 }
@@ -189,6 +194,17 @@ function startGameHard() {
     snake.body.push({ row: snake.row - 1, col: snake.col });
     snake.body.push({ row: snake.row - 2, col: snake.col });
     
+    gameInterval = setInterval(updateGame, 150);
+}
+
+function startGameVeryHard() {
+    render();
+    placeFood();
+
+    snake.body.push({ row: snake.row - 1, col: snake.col });
+    snake.body.push({ row: snake.row - 2, col: snake.col });
+    snake.body.push({ row: snake.row - 3, col: snake.col });
+    
     gameInterval = setInterval(updateGame, 100);
 }
 
@@ -198,7 +214,7 @@ function updateGame() {
     if(snake.direction !== 'stop') {
         updateSnakeBody();
     }
-    snake.move(); // Move a cabeça da cobra
+    snake.move();
     checkCollision();
     eatFood();
     render();
@@ -220,6 +236,11 @@ function stopGame() {
 //-----------------------------------------------------------------------------
 
 function renderSnake() {
+    // veryHardMap[snake.row][snake.col] = 1;
+    // snake.body.forEach(part => {
+    //     veryHardMap[part.row][part.col] = 1;
+    // });
+
     easyMap[snake.row][snake.col] = 1;
     snake.body.forEach(part => {
         easyMap[part.row][part.col] = 1;
@@ -243,7 +264,8 @@ function checkBodyCollision() {
 //-----------------------------------------------------------------------------
 
 function render() {
-    game.style.display = "block";
+    game.style.display = "flex";
+    game.style.alignItems = "center";
     menu.style.display = "none";
 
     board.innerHTML = "";

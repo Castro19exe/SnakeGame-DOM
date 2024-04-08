@@ -31,21 +31,26 @@ body {
     cursor: pointer;
 }
 
-#creditsBtn, #exitBtn, #exitBtnGameOver {
+#creditsBtn, #exitBtn {
     margin-top: 30px;
+}
+
+ #exitBtnGameOver {
+    margin-top: 50px;
 }
 
 #game {
     display: none;
     width: 585px;
-    height: 627px;
+    height: 100vh;
     margin: 0px auto;
 }
 
 #output {
-    margin-top: 5vh;
-    padding: 10px;
+    width: 585px;
+    padding-block: 10px;
     font-family: 'Minecraft';
+    font-size: 20px;
     color: #423934;
     background-color: #ffd541;
     border: 5px solid #423934;
@@ -58,6 +63,7 @@ body {
     margin: 0px;
     background-color: #ffd541;
     background-size: cover;
+    border: 5px solid #423934;
   }
 
 .cell {
@@ -86,13 +92,13 @@ body {
 }
 
 .developersTitle {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-size: 300%;
 }
 
 .gameOverTitle {
     font-family: 'Minecraft';
     font-size: 700%;
-    color: #d43939;
-    text-shadow: 3px 5px 0px rgba(255, 255, 255, 0.51);
+    color: #da2525;
+    text-shadow: 3px 5px 0px rgba(255, 255, 255, 0.8);
 }

@@ -129,6 +129,37 @@ const snake = {
 
 //--------------------------------------------------------------------------------------
 
+snake.moveRight = function() {
+    if (this.col < COLUMNS - 1) {
+        easyMap[this.row][this.col] = 0;
+        this.col++;
+        easyMap[this.row][this.col] = 1;
+    }
+};
+snake.moveLeft = function() {
+    if (this.col > 0) {
+        easyMap[this.row][this.col] = 0;
+        this.col--;
+        easyMap[this.row][this.col] = 1;
+    }
+};
+snake.moveUp = function() {
+    if (this.row > 0) {
+        easyMap[this.row][this.col] = 0;
+        this.row--;
+        easyMap[this.row][this.col] = 1;
+    }
+};
+snake.moveDown = function() {
+    if (this.row < ROWS - 1) {
+        easyMap[this.row][this.col] = 0;
+        this.row++;
+        easyMap[this.row][this.col] = 1;
+    }
+};
+
+//--------------------------------------------------------------------------------------
+
 //Load script
 window.addEventListener("load", init, false);
 
@@ -280,9 +311,9 @@ function render() {
             if (easyMap[row][column] === 1) {
                 cel.style.backgroundColor = "Lime";
             } else if (easyMap[row][column] === 2) {
-                cel.style.backgroundColor = "red"; // Comida
+                cel.style.backgroundColor = "red";
             } else {
-                cel.style.backgroundColor = "transparent"; // Espaço vazio
+                cel.style.backgroundColor = "transparent";
             }
 
             cel.style.top = row * (45 + 0) + "px";
@@ -293,7 +324,7 @@ function render() {
     snake.body.forEach(part => {
         let cel = document.createElement("div");
         cel.setAttribute("class", "cell");
-        cel.style.backgroundColor = "Lime"; // Cor do corpo da cobra
+        cel.style.backgroundColor = "Lime";
         cel.style.top = part.row * (45 + 0) + "px";
         cel.style.left = part.col * (45 + 0) + "px";
         board.appendChild(cel);
@@ -301,6 +332,8 @@ function render() {
 
     output.innerHTML = "Score: " + score;
 }
+
+//-----------------------------------------------------------------------------
 
 function updateSnakeBody() {
     // Move cada parte do corpo para a posição da parte seguinte
@@ -336,6 +369,8 @@ function keydownHandler(e) {
     }
 }
 
+//-----------------------------------------------------------------------------
+
 function placeFood() {
     let validLocation = false;
 
@@ -351,41 +386,14 @@ function placeFood() {
     easyMap[foodY][foodX] = 2;
 }
 
+//-----------------------------------------------------------------------------
+
 function eatFood() {
     if (snake.row === foodY && snake.col === foodX) {
         score += 5;
         placeFood();
-        // Adiciona um segmento de corpo à cobra
         snake.body.push({ row: snake.row, col: snake.col });
     }
 }
 
-// Funções de movimento da cobra
-snake.moveRight = function() {
-    if (this.col < COLUMNS - 1) {
-        easyMap[this.row][this.col] = 0;
-        this.col++;
-        easyMap[this.row][this.col] = 1;
-    }
-};
-snake.moveLeft = function() {
-    if (this.col > 0) {
-        easyMap[this.row][this.col] = 0;
-        this.col--;
-        easyMap[this.row][this.col] = 1;
-    }
-};
-snake.moveUp = function() {
-    if (this.row > 0) {
-        easyMap[this.row][this.col] = 0;
-        this.row--;
-        easyMap[this.row][this.col] = 1;
-    }
-};
-snake.moveDown = function() {
-    if (this.row < ROWS - 1) {
-        easyMap[this.row][this.col] = 0;
-        this.row++;
-        easyMap[this.row][this.col] = 1;
-    }
-};
+//-----------------------------------------------------------------------------

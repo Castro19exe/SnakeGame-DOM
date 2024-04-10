@@ -241,7 +241,7 @@ function startGameVeryHard() {
     snake.body.push({ row: snake.row - 2, col: snake.col });
     snake.body.push({ row: snake.row - 3, col: snake.col });
     
-    gameInterval = setInterval(updateGame, 100);
+    gameInterval = setInterval(updateGame, 50);
 }
 
 //-----------------------------------------------------------------------------

@@ -32,6 +32,18 @@ const easyMap =
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
+const asianMap =
+[
+    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 1, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0,]
+];
 
 // Cel Size
 const SIZE = 32;
@@ -112,7 +124,7 @@ const snake = {
                 this.moveRight();
                 break;
         }
-    },
+    }
 }
 
 //--------------------------------------------------------------------------------------
@@ -253,7 +265,7 @@ function stopGame() {
     overlayGameOver.style.justifyContent = "center";
     overlayGameOver.style.alignItems = "center";
     scoreOutput.innerHTML += "Your Score: " + score;
-    document.getElementById("exitBtnGameOver").addEventListener("click", function() {
+    document.getElementById("exitBtnGameOver").addEventListener("click", function(){
         location.href = "index.html";
     });
 }
@@ -324,12 +336,10 @@ function render() {
 //-----------------------------------------------------------------------------
 
 function updateSnakeBody() {
-    // Move cada parte do corpo para a posição da parte seguinte
     for (let i = snake.body.length - 1; i > 0; i--) {
         snake.body[i].row = snake.body[i - 1].row;
         snake.body[i].col = snake.body[i - 1].col;
     }
-    // A primeira parte do corpo segue a cabeça
     if (snake.body.length > 0) {
         snake.body[0].row = snake.row;
         snake.body[0].col = snake.col;

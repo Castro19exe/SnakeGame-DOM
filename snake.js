@@ -336,12 +336,10 @@ function render() {
 //-----------------------------------------------------------------------------
 
 function updateSnakeBody() {
-    // Move cada parte do corpo para a posição da parte seguinte
     for (let i = snake.body.length - 1; i > 0; i--) {
         snake.body[i].row = snake.body[i - 1].row;
         snake.body[i].col = snake.body[i - 1].col;
     }
-    // A primeira parte do corpo segue a cabeça
     if (snake.body.length > 0) {
         snake.body[0].row = snake.row;
         snake.body[0].col = snake.col;

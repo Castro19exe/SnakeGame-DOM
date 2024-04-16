@@ -159,7 +159,7 @@ window.addEventListener("load", init, false);
 function init(e) {
     //Inicialize Sounds
     sounds.menuSound = document.getElementById("menuSound");
-	sounds.menuSound.volume = 0.05;
+	sounds.menuSound.volume = 0.03;
 
     //Snake spawn in a random position
     snake.col = Math.floor(Math.random() * COLUMNS);

@@ -24,25 +24,13 @@ const easyMap =
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-];
-const asianMap =
-[
-    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    [0, 0, 0, 0, 1, 0, 0, 0, 0,],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    [0, 0, 0, 0, 0, 0, 1, 0, 0,],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0,]
 ];
 
 // Cel Size
@@ -60,10 +48,15 @@ let btnAsian;
 let btnCredits;
 let exitBtn;
 
+const sounds = {
+    menuSound: "",
+    gameSound: ""
+}
+
 const snake = {
     row: 6,
     col: 6,
-    direction: 'stop',
+    direction: 'down',
     body: [],
     moveRight: function() {
         if (this.col < COLUMNS - 1) {
@@ -164,6 +157,14 @@ snake.moveDown = function() {
 window.addEventListener("load", init, false);
 
 function init(e) {
+    //Inicialize Sounds
+    sounds.menuSound = document.getElementById("menuSound");
+	sounds.menuSound.volume = 0.05;
+
+    //Snake spawn in a random position
+    snake.col = Math.floor(Math.random() * COLUMNS);
+    snake.row = Math.floor(Math.random() * ROWS);
+
     //Variables
     menu = document.getElementById("menuStructure");
     game = document.getElementById("game");
@@ -236,7 +237,7 @@ function startGameHard() {
 function startGameVeryHard() {
     render();
     placeFood();
-
+    
     snake.body.push({ row: snake.row - 1, col: snake.col });
     snake.body.push({ row: snake.row - 2, col: snake.col });
     snake.body.push({ row: snake.row - 3, col: snake.col });
@@ -309,8 +310,11 @@ function render() {
             board.appendChild(cel);
 
             if (easyMap[row][column] === 1) {
+                
                 cel.style.backgroundColor = "Lime";
+
             } else if (easyMap[row][column] === 2) {
+
                 cel.style.backgroundColor = "red";
             } else {
                 cel.style.backgroundColor = "transparent";
